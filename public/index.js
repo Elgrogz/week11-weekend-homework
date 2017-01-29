@@ -19,19 +19,25 @@ var requestComplete = function() {
 }
 
 var generateWeatherData = function() {
-  var forecasts = document.querySelector('#forecasts');
-  for (forecast of data.forecast) {
-    console.log(forecast.snow_mm);
-    var dateToAdd = document.createElement('ul');
-    dateToAdd.innerText = forecast.date;
-    var timeToAdd = document.createElement('li');
-    timeToAdd.innerText = forecast.time;
-    var snowfall = document.createElement('li');
-    snowfall.innerText = forecast.snow_mm + "mm of snow";
-    dateToAdd.appendChild(timeToAdd);
-    dateToAdd.appendChild(snowfall);
-    forecasts.appendChild(dateToAdd);
+  var container = document.querySelector('#forecasts');
+  // for (forecast of data.forecast) {
+  //   console.log(forecast.snow_mm);
+  //   var dateToAdd = document.createElement('ul');
+  //   dateToAdd.innerText = forecast.date;
+  //   var timeToAdd = document.createElement('li');
+  //   timeToAdd.innerText = forecast.time;
+  //   var snowfall = document.createElement('li');
+  //   snowfall.innerText = forecast.snow_mm + "mm of snow";
+  //   dateToAdd.appendChild(timeToAdd);
+  //   dateToAdd.appendChild(snowfall);
+  //   forecasts.appendChild(dateToAdd);
+  // }
+
+  var forecastData = [];
+  for (var forecast of data.forecast) {
+    forecastData.push({name:forecast.time, data: [forecast.snow_mm]})
   }
+  new ColumnChart(container, forecastData);
 }
 
 window.onload = function() {
