@@ -21,16 +21,38 @@ var snowRequestComplete = function() {
   var container = document.querySelector('#cairngorm-snow-forecast');
   var forecastData = [];
   for (var forecast of cairngormSnowData.forecast) {
-    forecastData.push({name:forecast.date + " " + forecast.time, data: [forecast.snow_mm]})
+    forecastData.push({name:forecast.date, data: [forecast.snow_mm]})
   }
-  new ColumnChart(container, forecastData);
+
+  var reducedForecastData = forecastData.reduce(function (accum, forecast) {
+    if (forecast.name in accum) {
+      accum[forecast.name] += forecast.data[0]; 
+    } else {
+      accum[forecast.name] = forecast.data[0];
+    }
+    return accum;
+  });
+
+  // var reformattedData = [];
+  // for (var forecast of reducedForecastData) {
+  //   console.log(forecast)
+  // }
+
+  // var reformattedData = reducedForecastData.map(function (object) {
+  //   var forecast = {name: object.key, data: [object.value]};
+  //   return forecast;
+  // });
+
+  console.log(reducedForecastData);
+
+  new ColumnChart(container, reducedForecastData);
 }
 
 var aviemoreRequestComplete = function() {
   if (this.status != 200) return;
   var jsonString = this.responseText;
   aviemoreWeatherData = JSON.parse(jsonString);
-  console.log(aviemoreWeatherData);
+  // console.log(aviemoreWeatherData);
 
   var container = document.querySelector('#aviemore-forecast');
   var weatherData = document.createElement('ul');

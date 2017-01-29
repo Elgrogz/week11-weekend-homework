@@ -13,4 +13,9 @@ body {
 
 #extra-info {
   display: flex;
+  margin: 20px;
+}
+
+#aviemore-forecast {
+  margin-left: 10px;
 }
