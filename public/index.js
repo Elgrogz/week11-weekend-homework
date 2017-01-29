@@ -33,18 +33,22 @@ var aviemoreRequestComplete = function() {
   console.log(aviemoreWeatherData);
 
   var container = document.querySelector('#aviemore-forecast');
-
   var weatherData = document.createElement('ul');
+  weatherData.innerText = "Current Weather in Aviemore:";
   var currentTemp = document.createElement('li');
-  console.log(aviemoreWeatherData.list[0].main.temp);
-
   currentTemp.innerText = (aviemoreWeatherData.list[0].main.temp - 273.15).toFixed(2) + "°C";
   weatherData.appendChild(currentTemp);
-  
+  var currentWeather = document.createElement('li');
+  currentWeather.innerText = aviemoreWeatherData.list[0].weather[0].description;
+  weatherData.appendChild(currentWeather);
+  var windspeed = document.createElement('li');
+  windspeed.innerText = aviemoreWeatherData.list[0].wind.speed + "km/h";
+  weatherData.appendChild(windspeed);
 
   container.appendChild(weatherData);
   
 }
+  // console.log(aviemoreWeatherData.list[0].weather[0]);
 
 var initialize = function() {
   makeRequest(urlCairngormSnowDetails, snowRequestComplete);

@@ -1,6 +1,9 @@
 body {
-  text-align: center;
   font-family: "Trebuchet MS";
+}
+
+#title {
+  text-align: center;
 }
 
 #main-map {
