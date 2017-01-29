@@ -1,9 +1,8 @@
 var urlCairngormSnowDetails = "http://api.weatherunlocked.com/api/resortforecast/1401?app_id=20805c07&app_key=" + apikeyWeatherUnlocked; 
-
 var urlAviemoreWeatherDetails = "http://api.openweathermap.org/data/2.5/forecast?q=Aviemore,uk&mode=json&appid=" + apikeyOpenWeatherMap;
-
 var cairngormSnowData = null;
 var aviemoreWeatherData = null;
+
 
 var makeRequest = function(url, callback) {
   var request = new XMLHttpRequest();
@@ -11,6 +10,7 @@ var makeRequest = function(url, callback) {
   request.onload = callback;
   request.send();
 }
+
 
 var snowRequestComplete = function() {
   if (this.status != 200) return;
@@ -24,6 +24,7 @@ var snowRequestComplete = function() {
     forecastData.push({name:forecast.date, data: [forecast.snow_mm]})
   }
 
+//this part returns the right data but not in the right format for HighCharts
   var reducedForecastData = forecastData.reduce(function (accum, forecast) {
     if (forecast.name in accum) {
       accum[forecast.name] += forecast.data[0]; 
@@ -33,10 +34,7 @@ var snowRequestComplete = function() {
     return accum;
   });
 
-  // var reformattedData = [];
-  // for (var forecast of reducedForecastData) {
-  //   console.log(forecast)
-  // }
+//attempt to reformat the forecast.
 
   // var reformattedData = reducedForecastData.map(function (object) {
   //   var forecast = {name: object.key, data: [object.value]};
@@ -45,7 +43,7 @@ var snowRequestComplete = function() {
 
   console.log(reducedForecastData);
 
-  new ColumnChart(container, reducedForecastData);
+  new ColumnChart(container, forecastData);
 }
 
 var aviemoreRequestComplete = function() {
