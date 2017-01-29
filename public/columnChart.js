@@ -11,6 +11,11 @@ var ColumnChart = function(containerToAdd, seriesToAdd) {
     series: seriesToAdd,
     xAxis: {
       categories: ["Time"]
+    },
+    yAxis: {
+      title: {
+          text: "Snowfall in mm"
+        }
     }
   });
 

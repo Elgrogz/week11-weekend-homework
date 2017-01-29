@@ -1,6 +1,6 @@
 // var url = "http://api.openweathermap.org/data/2.5/forecast?q=Edinburgh,uk&mode=json&appid=" + apikey;
 
-var url = "http://api.weatherunlocked.com/api/resortforecast/1401?app_id=20805c07&app_key=afab5ce56629579eb9db2f259459f349"
+var url = "http://api.weatherunlocked.com/api/resortforecast/1401?app_id=20805c07&app_key=" + apikeyWeatherUnlocked;
 var data = null;
 
 var makeRequest = function(url, callback) {
@@ -20,22 +20,9 @@ var requestComplete = function() {
 
 var generateWeatherData = function() {
   var container = document.querySelector('#forecasts');
-  // for (forecast of data.forecast) {
-  //   console.log(forecast.snow_mm);
-  //   var dateToAdd = document.createElement('ul');
-  //   dateToAdd.innerText = forecast.date;
-  //   var timeToAdd = document.createElement('li');
-  //   timeToAdd.innerText = forecast.time;
-  //   var snowfall = document.createElement('li');
-  //   snowfall.innerText = forecast.snow_mm + "mm of snow";
-  //   dateToAdd.appendChild(timeToAdd);
-  //   dateToAdd.appendChild(snowfall);
-  //   forecasts.appendChild(dateToAdd);
-  // }
-
   var forecastData = [];
   for (var forecast of data.forecast) {
-    forecastData.push({name:forecast.time, data: [forecast.snow_mm]})
+    forecastData.push({name:forecast.date + " " + forecast.time, data: [forecast.snow_mm]})
   }
   new ColumnChart(container, forecastData);
 }
@@ -43,3 +30,17 @@ var generateWeatherData = function() {
 window.onload = function() {
   makeRequest(url, requestComplete);
 };
+
+
+// //attempt to get only dates
+//   var forecastData = [];
+//   for (var forecast of data.forecast) {
+//     for (var i = 0; i < forecastData.length; i++) {
+//       console.log(forecastData);
+//         if (forecastData[i].name != forecast.date) { 
+//         forecastData[i] === {name:forecast.date, data: [forecast.snow_mm]};
+//       } else {
+//       forecastData[i].data += forecast.snow_mm;
+//     }
+//   }
+// }
