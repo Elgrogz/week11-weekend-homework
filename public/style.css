@@ -1,0 +1,13 @@
+body {
+  text-align: center;
+  font-family: "Trebuchet MS";
+}
+
+#main-map {
+  width: 600px; 
+  height: 400px;
+}
+
+#extra-info {
+  display: flex;
+}

@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Country App</title>
-    <link rel='stylesheet' type='text/css' href = 'style.css'>
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="columnChart.js"></script>
-    <script src="apikey.js"></script>
-    <script src="index.js"></script>
-    <script src="mapWrapper.js"></script>
-  </head>
-  <body>
-  <h1>Cairngorm 7 Day Snow Forecast</h1>
-  <div id="forecasts"></div>
-  <div id="main-map" style="width: 600px; height: 400px;"></div>
-  </body>
+<head>
+  <title>Country App</title>
+  <link rel='stylesheet' type='text/css' href = 'style.css'>
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="columnChart.js"></script>
+  <script src="apikey.js"></script>
+  <script src="index.js"></script>
+  <script src="mapWrapper.js"></script>
+</head>
+<body>
+  <h1 id="title">Cairngorm Snowsports Info</h1>
+  <div id="cairngorm-snow-forecast"></div>
+      <h3>Map</h3>
+  <div id="extra-info">
+    <div id="main-map">
+    </div>
+    <div id="aviemore-forecast">
+      <h3>Current Weather in Aviemore</h3>
+    </div>
+  </div>
+</body>
 </html>
-
-<!-- key=AIzaSyDk19liv5aPAHSEBit8R0Shu3LIaWZ9xI4&c -->
