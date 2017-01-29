@@ -1,6 +1,7 @@
-// var url = "http://api.openweathermap.org/data/2.5/forecast?q=Edinburgh,uk&mode=json&appid=" + apikey;
+var urlCairngormSnowDetails = "http://api.weatherunlocked.com/api/resortforecast/1401?app_id=20805c07&app_key=" + apikeyWeatherUnlocked; 
 
-var url = "http://api.weatherunlocked.com/api/resortforecast/1401?app_id=20805c07&app_key=" + apikeyWeatherUnlocked;
+var urlGlenshee = "http://api.openweathermap.org/data/2.5/forecast?lat=56.887023&lon=-3.415439&appid=" + apikeyOpenWeatherMap;
+
 var data = null;
 
 var makeRequest = function(url, callback) {
@@ -27,9 +28,18 @@ var generateWeatherData = function() {
   new ColumnChart(container, forecastData);
 }
 
-window.onload = function() {
-  makeRequest(url, requestComplete);
+var initialize = function() {
+  makeRequest(urlCairngormSnowDetails, requestComplete);
+
+  var mapDiv = document.querySelector("#main-map");
+  var cairngorm = {lat: 57.133765, lng: -3.670272};
+  var mainMap = new MapWrapper(mapDiv, cairngorm, 8);
+
+  mainMap.addMarker(cairngorm, "Cairngorm Ski Centre");
+
 };
+
+window.onload = initialize;
 
 
 // //attempt to get only dates
